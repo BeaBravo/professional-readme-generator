@@ -31,12 +31,12 @@ const questions = [
   {
     type: "input",
     message: "any notable contributions?",
-    name: "constributions",
+    name: "contributions",
   },
   {
     type: "input",
     message: "Test instructions here: ",
-    name: "test-instructions",
+    name: "testInstructions",
   },
   {
     type: "input",
@@ -65,6 +65,69 @@ const questions = [
 //HELPER FUNCTIONS
 //have to stringify the data to be able to use fs.writefile
 
-inquirer.prompt(questions).then((response) => console.log(response));
+const readmeTemplate = (...sections) => {
+  console.log(sections);
+  const readmeFile = `# ${title.split(" ").join("-")}
+
+  ## Description
+  ${description}
+  
+  ## Table of Contents (Optional)
+  
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Credits](#credits)
+  - [License](#license)
+  
+  ## Installation
+  ${installation}
+  
+  ## Usage
+  ${usage} 
+  
+  ## Credits
+  ${contributions}
+  
+  ## License
+  ${license}
+  
+  
+  ## How to Contribute
+  If you have any questions, comments, or concerns please feel free to reach me at  ${email}. If you would like to contribute to my project, you can find my repo on github.com/${username}
+  ## Tests`;
+};
+
+const createReadMeFile = (answers) => {
+  const {
+    title,
+    description,
+    installation,
+    usage,
+    contributions,
+    testInstructions,
+    username,
+    email,
+    license,
+  } = answers;
+  const projectTitle = title.split(" ").join("-");
+
+  const readme = readmeTemplate(
+    title,
+    description,
+    installation,
+    usage,
+    contributions,
+    testInstructions,
+    username,
+    email,
+    license
+  );
+
+  console.log(typeof readme);
+
+  //   fs.writeFileSync("README.md", readme);
+};
+
+inquirer.prompt(questions).then((response) => createReadMeFile(response));
 
 //INITIALIZATION
