@@ -65,9 +65,47 @@ const questions = [
 //HELPER FUNCTIONS
 //have to stringify the data to be able to use fs.writefile
 
-const readmeTemplate = (...sections) => {
-  console.log(sections);
-  const readmeFile = `# ${title.split(" ").join("-")}
+const readmeTemplate = (
+  title,
+  description,
+  installation,
+  usage,
+  contributions,
+  testInstructions,
+  username,
+  email,
+  license
+) => {
+  //check conditions to match the template of the readme
+  //
+  //title must not have spaces, but should have '-' as separators
+  const projectTitle = title.split(" ").join("-");
+
+  //check for the different licenses and their info info
+  //   switch (license) {
+  //     case "MIT":
+  //       const licenseInfo = `info about MIT`;
+  //       break;
+  //     case "Apache License 2.0":
+  //       //info about Apache
+  //       break;
+  //     case "GNU General Public License (GPL) v3":
+  //       //info about this
+  //       break;
+  //     case "Mozilla Public License 2.0":
+  //       //info
+  //       break;
+  //     case "BSD 3-Clause License":
+  //       //info
+  //       break;
+  //   }
+  //do a switch case for the licenses
+
+  //create a github link with the user
+  const GitHubLink = `github.com/${username}`;
+
+  //plug the different info in the template
+  const readmeFile = `# ${projectTitle}
 
   ## Description
   ${description}
@@ -93,8 +131,11 @@ const readmeTemplate = (...sections) => {
   
   
   ## How to Contribute
-  If you have any questions, comments, or concerns please feel free to reach me at  ${email}. If you would like to contribute to my project, you can find my repo on github.com/${username}
+  If you have any questions, comments, or concerns please feel free to reach me at  ${email}. If you would like to contribute to my project, you can find my repo on [${GitHubLink}](https://wwww.${GitHubLink})
+
   ## Tests`;
+
+  return readmeFile;
 };
 
 const createReadMeFile = (answers) => {
@@ -109,7 +150,6 @@ const createReadMeFile = (answers) => {
     email,
     license,
   } = answers;
-  const projectTitle = title.split(" ").join("-");
 
   const readme = readmeTemplate(
     title,
@@ -125,7 +165,7 @@ const createReadMeFile = (answers) => {
 
   console.log(typeof readme);
 
-  //   fs.writeFileSync("README.md", readme);
+  fs.writeFileSync("README.md", readme);
 };
 
 inquirer.prompt(questions).then((response) => createReadMeFile(response));
