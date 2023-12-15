@@ -71,7 +71,7 @@ const writeToFile = (fileName, answers) => {
   const fromTemplate = generateMarkdown(answers);
 
   fs.writeFileSync(fileName, fromTemplate);
-  console.log(fileName + "successfully created");
+  console.log(fileName + " successfully created");
 };
 
 function init() {

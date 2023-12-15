@@ -101,7 +101,7 @@ function generateMarkdown(data) {
   
   
   ## How to Contribute
-  If you have any questions, comments, or concerns please feel free to reach me at  ${email}. If you would like to contribute to my project, you can find my repo on [${GitHubLink}](https://wwww.${GitHubLink})
+  If you have any questions, comments, or concerns please feel free to reach me at  ${email}. If you would like to contribute to my project, you can find my repo on [${GitHubLink}](https://www.${GitHubLink})
 
   ## Tests`;
   return readmeFile;
