@@ -4,11 +4,9 @@ const fs = require("fs");
 const generateMarkdown = require("./generateMarkdown.js");
 require("./generateMarkdown.js");
 
-// fs.writeFile("README.md", "hello", (err) =>
-//   err ? console.error(err) : console.log("Success!")
-// );
 
 //DATA
+//these are the questions prompted for the user to answer and build the different sections of the readme file
 const questions = [
   {
     type: "input",
@@ -65,9 +63,11 @@ const questions = [
 ];
 
 //HELPER FUNCTIONS
-//have to stringify the data to be able to use fs.writefile
 
 const writeToFile = (fileName, answers) => {
+  //this function is used to grab the answers from the prompt and create a file with the name provided. 
+  //it calls generateMarkdown function to return a string literal of the file (fromTemplate)
+  //it creates a file using fs.writeFileSync and will console.log that it was successfully created to the user 
   const fromTemplate = generateMarkdown(answers);
 
   fs.writeFileSync(fileName, fromTemplate);
@@ -75,6 +75,7 @@ const writeToFile = (fileName, answers) => {
 };
 
 function init() {
+  //this initializes the prompt to the user and after it calls for the function writeToFile with the responses 
   inquirer
     .prompt(questions)
     .then((response) => writeToFile("README.md", response));

@@ -1,5 +1,6 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
+// this function will assign the licenseBadge depending on which license the user chooses
 function renderLicenseBadge(license) {
   switch (license) {
     case "MIT":
@@ -19,7 +20,7 @@ function renderLicenseBadge(license) {
 }
 
 // TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// this function returns the license link depending on which license the user chooses
 function renderLicenseLink(license) {
   switch (license) {
     case "MIT":
@@ -39,14 +40,10 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-  //check for the different licenses and their info info
-}
-
 // TODO: Create a function to generate markdown for README
+//this function generates the string literal of the file that will then be returned.
 function generateMarkdown(data) {
+  //it destructures the data with all the different inputs to be used to build the file
   const {
     title,
     description,
@@ -60,11 +57,10 @@ function generateMarkdown(data) {
   } = data;
 
   //check conditions to match the template of the readme
-  //
   //title must not have spaces, but should have '-' as separators
   const projectTitle = title.split(" ").join("-");
 
-  //create a github link with the user
+  //create a github link with the username provided with the user
   const GitHubLink = `github.com/${username}`;
 
   //get License link and badge
